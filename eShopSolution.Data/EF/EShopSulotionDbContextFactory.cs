@@ -8,22 +8,22 @@ using System.Text;
 
 namespace eShopSolution.Data.EF
 {
-    //public class EShopSulotionDbContextFactory : IDesignTimeDbContextFactory<EShopDbConText>
-    //{
-    //    public EShopDbConText CreateDbContext(string[] args)
-    //    {
-    //        IConfigurationRoot configuration = new ConfigurationBuilder()
-    //            .SetBasePath(Directory.GetCurrentDirectory())
-    //            .AddJsonFile("appsettings.json")
-    //            .Build();
+    public class EShopSulotionDbContextFactory : IDesignTimeDbContextFactory<EShopDbConText>
+    {
+        public EShopDbConText CreateDbContext(string[] args)
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
 
-    //        var connectionString = configuration.GetConnectionString("eShopSolutionDb");
+            var connectionString = configuration.GetConnectionString("eShopSolutionDb");
 
-    //        var optionsBuilder = new DbContextOptionsBuilder<EShopDbConText>();
-    //        optionsBuilder.UseSqlServer(connectionString);
+            var optionsBuilder = new DbContextOptionsBuilder<EShopDbConText>();
+            optionsBuilder.UseSqlServer(connectionString);
 
-    //        return new EShopDbConText(optionsBuilder.Options);
-    //    }
-    //}
+            return new EShopDbConText(optionsBuilder.Options);
+        }
+    }
 }

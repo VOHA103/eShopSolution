@@ -7,7 +7,7 @@ namespace eShopSolution.Data.Entities
 {
     public class Transaction
     {
-        public int Id { set; get; }
+        public int Id { get; set; }
         public DateTime TransactionDate { set; get; }
         public string ExternalTransactionId { set; get; }
         public decimal Amount { set; get; }
@@ -17,6 +17,7 @@ namespace eShopSolution.Data.Entities
         public TransactionStatus Status { get; set; }
         public string Provider { set; get; }
         public Guid UserId { get; set; }
+       // public AppUser AppUser { get; set; }
 
     }
 }
