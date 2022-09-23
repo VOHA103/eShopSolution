@@ -1,11 +1,11 @@
-﻿using eShopSolution.Application.Catalog.Products.Dtos;
-using eShopSolution.Application.Dtos;
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using eShopSolution.Application.Catalog.Products.Dtos.Public;
+using eShopSolution.ViewModels.Common;
+using eShopSolution.ViewModels.Catalog.Products;
+using eShopSolution.ViewModels.Catalog.Products.Manage;
 
 namespace eShopSolution.Application.Catalog.Products
 {

@@ -41,7 +41,7 @@ namespace eShopSolution.Data.EF
 
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
-            //modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
             //modelBuilder.ApplyConfiguration(new SlideConfiguration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
@@ -83,11 +83,8 @@ namespace eShopSolution.Data.EF
 
 
 
-        //  public DbSet<AppRole> AppRoles { get; set; }
-        //  public DbSet<AppUser> AppUsers { get; set; }
-
-
-        //  public DbSet<ProductImage> ProductImages { get; set; }
+     
+         public DbSet<ProductImage> ProductImages { get; set; }
 
         // public DbSet<Slide> Slides { get; set; }
     }
