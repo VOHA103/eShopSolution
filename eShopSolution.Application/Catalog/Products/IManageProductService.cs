@@ -1,4 +1,5 @@
 ﻿using eShopSolution.Application.Catalog.Products.Dtos;
+using eShopSolution.Application.Catalog.Products.Dtos.Public;
 using eShopSolution.Application.Dtos;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,10 @@ namespace eShopSolution.Application.Catalog.Products
         Task<int> Update(ProductUpdateRequest request);
         Task<int> Delete(int productId);
         Task<bool> UpdatePrice(int productId,decimal newPrice);
-        Task<bool> UpdateStock(int productId,decimal addeQuantity);
+        Task<bool> UpdateStock(int productId,int  addeQuantity);
         Task AddViewcount(int productId);
-        Task<List<ProductViewModel>> GetAll();
 
-        Task<PageResult<ProductViewModel>> GetAllPaging(string keyword, string pageIndex, string pageSize);
+        Task<PageResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request);
 
 
 

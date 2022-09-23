@@ -19,10 +19,7 @@ namespace eShopSolution.Application.Catalog.Products.Dtos
         public string SeoDescription { get; set; }
         public string SeoTitle { get; set; }
         public string SeoAlias { get; set; }
-
-             
-        
-        
-        }
+        public string LanguageId { get;  set; }
+    }
     }
 

@@ -8,7 +8,7 @@ using eShopSolution.Data.EF;
 
 namespace eShopSolution.Data.Migrations
 {
-    [DbContext(typeof(EShopDbConText))]
+    [DbContext(typeof(eShopDbConText))]
     partial class EShopDbConTextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
