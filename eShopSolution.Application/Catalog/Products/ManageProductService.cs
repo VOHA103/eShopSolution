@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using eShopSolution.ViewModels.Catalog.Products.Manage;
 using eShopSolution.ViewModels.Common;
 using eShopSolution.ViewModels.Catalog.Products;
 using System.Net.Http.Headers;
@@ -100,7 +99,7 @@ namespace eShopSolution.Application.Catalog.Products
             throw new NotImplementedException();
         }
 
-        public async Task<PageResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PageResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             //1 Select Join
             var query = from p in _context.Products
@@ -225,9 +224,16 @@ namespace eShopSolution.Application.Catalog.Products
             throw new NotImplementedException();
         }
 
-        public Task<List<ViewModels.Catalog.Products.Public.ProductImageViewModel>> GetListImage(int productId)
+        public Task<List<ViewModels.Catalog.Products.ProductImageViewModel>> GetListImage(int productId)
         {
             throw new NotImplementedException();
         }
+
+        Task<List<ProductImageViewModel>> IManageProductService.GetListImage(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
+    
     }
 }
