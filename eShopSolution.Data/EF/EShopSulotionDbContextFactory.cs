@@ -8,9 +8,9 @@ using System.Text;
 
 namespace eShopSolution.Data.EF
 {
-    public class EShopSulotionDbContextFactory : IDesignTimeDbContextFactory<EShopDbConText>
+    public class EShopSulotionDbContextFactory : IDesignTimeDbContextFactory<eShopDbConText>
     {
-        public EShopDbConText CreateDbContext(string[] args)
+        public eShopDbConText CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -20,10 +20,10 @@ namespace eShopSolution.Data.EF
 
             var connectionString = configuration.GetConnectionString("eShopSolutionDb");
 
-            var optionsBuilder = new DbContextOptionsBuilder<EShopDbConText>();
+            var optionsBuilder = new DbContextOptionsBuilder<eShopDbConText>();
             optionsBuilder.UseSqlServer(connectionString);
 
-            return new EShopDbConText(optionsBuilder.Options);
+            return new eShopDbConText(optionsBuilder.Options);
         }
     }
 }
