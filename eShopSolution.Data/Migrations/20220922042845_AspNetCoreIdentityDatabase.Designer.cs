@@ -9,7 +9,7 @@ using eShopSolution.Data.EF;
 
 namespace eShopSolution.Data.Migrations
 {
-    [DbContext(typeof(eShopDbConText))]
+    [DbContext(typeof(EShopDbConText))]
     [Migration("20220922042845_AspNetCoreIdentityDatabase")]
     partial class AspNetCoreIdentityDatabase
     {
