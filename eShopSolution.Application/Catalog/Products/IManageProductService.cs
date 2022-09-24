@@ -14,6 +14,7 @@ namespace eShopSolution.Application.Catalog.Products
         Task<bool> UpdatePrice(int productId,decimal newPrice);
         Task<bool> UpdateStock(int productId,int  addeQuantity);
         Task AddViewcount(int productId);
+        Task<ProductImageViewModel> GetById(int productId,string languageId); 
 
         Task<PageResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
 
@@ -21,5 +22,7 @@ namespace eShopSolution.Application.Catalog.Products
         Task<int> RemoveImages(int imageId);
         Task<int> UpdateImage(int imageId, string caption,bool isDefault);
         Task<List<ProductImageViewModel>> GetListImage(int productId);
+        Task Update(ProductCreateRequest request);
+        Task GetById(int id);
     }
 }

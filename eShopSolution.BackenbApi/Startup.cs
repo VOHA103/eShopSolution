@@ -1,4 +1,5 @@
 using eShopSolution.Application.Catalog.Products;
+using eShopSolution.Application.Common;
 using eShopSolution.Data.EF;
 using eShopSolution.Utilities.Common;
 using Microsoft.AspNetCore.Builder;
@@ -28,11 +29,13 @@ namespace eShopSolution.BackenbApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<eShopDbConText>(options => 
+            services.AddDbContext<EShopDbConText>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
             
             //Declare DI
+            services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IPublicProductService, PublicProductService>();
+            services.AddTransient<IManageProductService,ManageProductService>();
 
             services.AddControllersWithViews();
             services.AddSwaggerGen(c=>
