@@ -1,16 +1,18 @@
-﻿using eShopSolution.ViewModels.Catalog.Products;
+﻿using eShopSolution.Application.Catalog.ProductImages;
+using eShopSolution.ViewModels.Catalog.Products;
 using eShopSolution.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProductImageViewModel = eShopSolution.Application.Catalog.ProductImages.ProductImageViewModel;
 
-namespace eShopSolution.Application.Catalog.Products
+namespace eShopSolution.Application.Catalog
 {
     public interface IManageProductService
     {
-        Task<int> Create(ProductCreateRequest request);
-        Task<int> Update(ProductUpdateRequest request);
-        Task<int> Delete(int productId);
+        Task<int> CreateProduct(ProductCreateRequest request);
+        Task<int> UpdateProduct(ProductUpdateRequest request);
+        Task<int> DeleteProduct(int productId);
         Task<bool> UpdatePrice(int productId,decimal newPrice);
         Task<bool> UpdateStock(int productId,int  addeQuantity);
         Task AddViewcount(int productId);
@@ -18,10 +20,12 @@ namespace eShopSolution.Application.Catalog.Products
 
         Task<PageResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
 
-        Task<int> AddImages(int productId,List<IFormFile> files);
-        Task<int> RemoveImages(int imageId);
-        Task<int> UpdateImage(int imageId, string caption,bool isDefault);
+        Task<int> AddImage(int productId,ProductImageCreateRequest request);
+        Task<int> RemoveImage(int ImageId);
+        Task<int> UpdateImage( int ImageId,ProductImageUpdateRequest request);
         Task<List<ProductImageViewModel>> GetListImage(int productId);
+        Task<ProductImageViewModel> GetImageById(int imageId);
+
         Task Update(ProductCreateRequest request);
         Task GetById(int id);
     }

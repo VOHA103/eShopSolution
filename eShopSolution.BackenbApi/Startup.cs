@@ -1,3 +1,4 @@
+using eShopSolution.Application.Catalog;
 using eShopSolution.Application.Catalog.Products;
 using eShopSolution.Application.Common;
 using eShopSolution.Data.EF;
