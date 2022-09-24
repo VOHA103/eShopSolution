@@ -10,9 +10,9 @@ using System.Text;
 
 namespace eShopSolution.Data.EF
 {
-    public class eShopDbConText : IdentityDbContext
+    public class EShopDbConText : IdentityDbContext
     {
-        public eShopDbConText(DbContextOptions options) : base(options)
+        public EShopDbConText(DbContextOptions options) : base(options)
         {
 
         }

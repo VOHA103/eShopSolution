@@ -9,7 +9,7 @@ using eShopSolution.Data.EF;
 
 namespace eShopSolution.Data.Migrations
 {
-    [DbContext(typeof(eShopDbConText))]
+    [DbContext(typeof(EShopDbConText))]
     [Migration("20220923083315_AddProductImageTable")]
     partial class AddProductImageTable
     {
