@@ -5,6 +5,9 @@ using eShopSolution.Application.System.Users;
 using eShopSolution.Data.EF;
 using eShopSolution.Data.Entities;
 using eShopSolution.Utilities.Common;
+using eShopSolution.ViewModels.System.Users;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,6 +44,8 @@ namespace eShopSolution.BackenbApi
             services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<EShopDbConText>()
                  .AddDefaultTokenProviders();
+
+
             //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IPublicProductService, PublicProductService>();
@@ -50,7 +55,12 @@ namespace eShopSolution.BackenbApi
             services.AddTransient<RoleManager<AppRole>,RoleManager<AppRole>>();
             services.AddTransient<IUserService, UserService>();
 
-            services.AddControllersWithViews();
+            //services.AddTransient<IValidator<LoginRequest>,LoginRequestValidator>();
+            //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+
+            services.AddControllers()
+             .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
 
             services.AddControllersWithViews();
             services.AddSwaggerGen(c=>
