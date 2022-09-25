@@ -3,6 +3,7 @@ using eShopSolution.Application.Catalog.Products;
 using eShopSolution.Application.Common;
 using eShopSolution.Data.EF;
 using eShopSolution.Utilities.Common;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,13 +50,12 @@ namespace eShopSolution.BackenbApi
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 
 
-            services.AddControllers();
             services.AddControllersWithViews();
 
 
 
-            //services.AddControllers()
-            //    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddSwaggerGen(c =>
             {
