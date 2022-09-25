@@ -44,7 +44,7 @@ namespace eShopSolution.Application.System.Users
             var claims = new[]{
                 new Claim(ClaimTypes.Email,user.Email),
             new Claim(ClaimTypes.GivenName,user.FirstName),
-            new Claim(ClaimTypes.Role,string.Join(";",role)),
+            new Claim(ClaimTypes.Role,string.Join(";",role))
 
             };
             //dung synmatric de ma hoa cai chuoi claim

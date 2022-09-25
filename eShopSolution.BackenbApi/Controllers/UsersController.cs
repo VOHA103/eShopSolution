@@ -25,7 +25,7 @@ namespace eShopSolution.BackenbApi.Controllers
 
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public async Task<IActionResult> Authenticate([FromBody]LoginRequest requst)
+        public async Task<IActionResult> Authenticate([FromForm] LoginRequest requst)
         {
             if (!ModelState.IsValid)
             {
@@ -39,12 +39,12 @@ namespace eShopSolution.BackenbApi.Controllers
 
             }
 
-            return Ok(new { toekn = resultToken });
+            return Ok(new { token = resultToken });
 
         }
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        public async Task<IActionResult> Register([FromForm] RegisterRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

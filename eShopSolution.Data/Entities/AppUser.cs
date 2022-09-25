@@ -5,7 +5,7 @@ using System.Text;
 
 namespace eShopSolution.Data.Entities
 {
-    public class AppUser : IdentityUser<Guid>
+    public partial class AppUser : IdentityUser<Guid>
     {
         public string FirstName { get; set; }
 
