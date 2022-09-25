@@ -21,14 +21,14 @@ namespace eShopSolution.BackenbApi.Controllers
             _publicProductService = publicProductService;
             _publicManageService = publicManageService;
         }
-        //http://localhost:port/product/
-        //[HttpGet("{languageId}")]
-        //public async Task<IActionResult> Get(string languageId)
-        //{
-        //    var products = await _publicProductService.GetAll(languageId);
-        //    return Ok(products);
+       // http://localhost:port/product/
+        [HttpGet("{languageId}")]
+        public async Task<IActionResult> Get(string languageId)
+        {
+            var products = await _publicProductService.GetAll(languageId);
+            return Ok(products);
 
-        //}
+        }
 
         //http://localhost:port/products?pageIndex=1 &pageSize=10&CategoryId=
         [HttpGet("public-paging/{languageId}")]
@@ -53,7 +53,7 @@ namespace eShopSolution.BackenbApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -73,7 +73,7 @@ namespace eShopSolution.BackenbApi.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -97,7 +97,7 @@ namespace eShopSolution.BackenbApi.Controllers
         /// <param name="productId"></param>
         /// <param name="newPrice"></param>
         /// <returns></returns>
-        [HttpPatch("{productd}/{newPrice}")]
+        [HttpPatch("{productId}/{newPrice}")]
         public async Task<IActionResult> UpdatePrice(int productId, decimal newPrice)
         {
             var isSuccessful = await _publicManageService.UpdatePrice(productId, newPrice);
@@ -112,9 +112,9 @@ namespace eShopSolution.BackenbApi.Controllers
         //Image
 
         [HttpPost("{productId}/images")]
-        public async Task<IActionResult> CreateImage(int productId,[FromForm] ProductImageCreateRequest request)
+        public async Task<IActionResult> CreateImage(int productId, [FromForm] ProductImageCreateRequest request)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -128,11 +128,11 @@ namespace eShopSolution.BackenbApi.Controllers
         [HttpPut("{productId}/images/{imageId}")]
         public async Task<IActionResult> UpdateImage(int imageId, [FromForm] ProductImageUpdateRequest request)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var result = await _publicManageService.UpdateImage(imageId,request);
+            var result = await _publicManageService.UpdateImage(imageId, request);
             if (result == 0)
                 return BadRequest();
             return Ok();
@@ -142,7 +142,7 @@ namespace eShopSolution.BackenbApi.Controllers
         [HttpDelete("{productId}/images/{imageId}")]
         public async Task<IActionResult> DeleteImage(int imageId)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -153,8 +153,8 @@ namespace eShopSolution.BackenbApi.Controllers
 
         }
 
-        [HttpGet("{productId}/{languageId}")]
-        public async Task<IActionResult> GetImagebyId(int productId, int  imageId)
+        [HttpGet("{productId}/images/{languageId}")]
+        public async Task<IActionResult> GetImagebyId( int  imageId)
         {
             var image = await _publicManageService.GetImageById( imageId);
             if (image == null)
