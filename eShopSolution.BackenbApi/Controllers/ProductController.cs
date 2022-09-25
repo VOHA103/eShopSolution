@@ -2,6 +2,7 @@
 using eShopSolution.Application.Catalog.ProductImages;
 using eShopSolution.Application.Catalog.Products;
 using eShopSolution.ViewModels.Catalog.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace eShopSolution.BackenbApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
 
