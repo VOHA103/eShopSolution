@@ -14,8 +14,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,11 +38,9 @@ namespace eShopSolution.BackenbApi
             services.AddDbContext<EShopDbConText>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
-
             services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<EShopDbConText>()
-                .AddDefaultTokenProviders();
-
+                 .AddDefaultTokenProviders();
             //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IPublicProductService, PublicProductService>();
@@ -50,7 +50,7 @@ namespace eShopSolution.BackenbApi
             services.AddTransient<RoleManager<AppRole>,RoleManager<AppRole>>();
             services.AddTransient<IUserService, UserService>();
 
-            services.AddTransient<IConfiguration>();
+            services.AddControllersWithViews();
 
             services.AddControllersWithViews();
             services.AddSwaggerGen(c=>
