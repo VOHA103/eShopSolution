@@ -40,6 +40,7 @@ namespace eShopSolution.BackenbApi
         {
             services.AddDbContext<EShopDbConText>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
+
             services.AddIdentity<AppUser, AppRole>()
                .AddEntityFrameworkStores<EShopDbConText>()
                .AddDefaultTokenProviders();
@@ -56,6 +57,7 @@ namespace eShopSolution.BackenbApi
             //services.AddTransient<ILanguageService, LanguageService>();
             //services.AddTransient<ISlideService, SlideService>();
             //services.AddTransient<IRoleService, RoleService>();
+
             services.AddTransient<IUserService, UserService>();
 
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
