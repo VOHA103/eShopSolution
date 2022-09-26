@@ -2,12 +2,15 @@ using eShopSolution.Application.Catalog;
 using eShopSolution.Application.Catalog.Products;
 using eShopSolution.Application.Common;
 using eShopSolution.Data.EF;
+using eShopSolution.Data.Entities;
 using eShopSolution.Utilities.Common;
+using eShopSolution.ViewModels.System;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,25 +40,34 @@ namespace eShopSolution.BackenbApi
         {
             services.AddDbContext<EShopDbConText>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
-            
+            services.AddIdentity<AppUser, AppRole>()
+               .AddEntityFrameworkStores<EShopDbConText>()
+               .AddDefaultTokenProviders();
             //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
+
             services.AddTransient<IPublicProductService, PublicProductService>();
             services.AddTransient<IManageProductService,ManageProductService>();
 
-             //services.AddTransient<IRoleService, RoleService>();
-               services.AddTransient<IUserService, UserService>();
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+
+            //services.AddTransient<ILanguageService, LanguageService>();
+            //services.AddTransient<ISlideService, SlideService>();
+            //services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IUserService, UserService>();
 
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 
 
-            services.AddControllersWithViews();
+            //   services.AddControllersWithViews();
 
 
 
-            services.AddControllers()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+            services.AddControllers();
+              // .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>);
 
             services.AddSwaggerGen(c =>
             {
