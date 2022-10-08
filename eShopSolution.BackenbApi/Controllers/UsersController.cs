@@ -29,13 +29,13 @@ namespace eShopSolution.BackenbApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _userService.Authencate(request);
+            var resultToken = await _userService.Authencate(request);
 
-            if (string.IsNullOrEmpty(result))
+            if (string.IsNullOrEmpty(resultToken))
             {
-                return BadRequest(result);
+                return BadRequest("Username or password is incorrect.");
             }
-            return Ok(result);
+            return Ok(resultToken );
         }
 
         [HttpPost]
@@ -48,9 +48,9 @@ namespace eShopSolution.BackenbApi.Controllers
             var result = await _userService.Register(request);
             if (!result)
             {
-                return BadRequest(result);
+                return BadRequest("Register is unsuccessful");
             }
-            return Ok(result);
+            return Ok();
         }
 
         ////PUT: http://localhost/api/users/id
